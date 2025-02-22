@@ -1,4 +1,7 @@
 # FourBarPostion
-This repo was created for ENGR Mechanism Design.
 
-The files commited to this repo are used for postional calcaulation for four bar mechanisms.
+When you want want to run the program, run main.py.
+Main.py will allow you make selection based on what is missing.
+
+Future expansion:
+postional graphic ability
