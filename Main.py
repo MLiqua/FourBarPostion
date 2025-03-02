@@ -11,10 +11,11 @@
 
 print("""
 	Please select from one of the cases below:
-	Case 1 (Four Bar): Theta 3 and Theta 4 unknown
-	Case 2 (Crank Slider): d and Theta 3 unknown
-	Case 3 (Slider Crank): Theta 2 and Theta 3 unknown
-	Case 4 Want to ID Grashof Four Bar Mech
+	Case 1: Theta 3 and Theta 4 unknown (Four Bar)
+	Case 2: d and Theta 3 unknown (Crank Slider)
+	Case 3: Theta 2 and Theta 3 unknown (Slider Crank)
+	Case 4: ID Grashof Four Bar Mech
+	Case 5: DOF (M) Calculator
 """)
 print("Type numeric part of case that you want: ") 
 UserInput = input()
@@ -35,6 +36,10 @@ match UserInput:
 				exec(code)
 	case "4":
 		with open("GrashofFour.py") as file:
+				code = file.read()
+				exec(code)
+	case "5":
+		with open("dof.py") as file:
 				code = file.read()
 				exec(code)
 	case _:
