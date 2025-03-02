@@ -1,0 +1,61 @@
+
+Given: 01, 04, b, d, c, and a
+Unknown: 02, 03
+
+Creation of vector loop
+Creation of euler equations
+
+Real: a*cos02 - b*cos03 - d = 0
+Imaginary: a*sin02 - b*sin03 - c = 0
+
+(I): b*cos03 = a*cos02 - d
+(II): b*sin03 = a*sin02 -c 
+
+(I)^2+(II)^2:
+b^2 * [ (cos03)^2 + (sin03)^2 ] = 
+	(a*cos02 - d)^2 + (a*sin02 - c)^2
+
+b^2 = a^2 * (cos02)^2 - d^2 - 2ad*cos02 
+	+ a^2*(sin02)^2 + c^2 - 2ac*sin02
+
+b^2 = a^2 * [ (cos02)^2 + (sin02)^2 ] + d^2 
+	- 2ad*cos02 - 2ac*sin02
+
+a^2 - b^2 + c^2 + d^2 - 2ad*cos02 - 2ac*sin02 = 0
+
+Define:
+	k1 = a^2 - b^2 + c^2 + d^2
+	k2 = -2ac
+	k3 = -2ad
+
+k1 + k2*sin02 + k3*cos02 = 0
+
+Usage -> Half angle relation
+sin02 = [ 2*tan(04/2) / 1 + ( tan(04/2) )^2 ]
+cos02 = [ 1 - ( tan(04/2) )^2 / 1 + ( tan(04/2) )^2 ]
+
+K1 + k2*[ 2*tan(04/2) / 1 + ( tan(04/2) )^2 ] 
+	+ k3*[ 1 - ( tan(04/2) )^2 / 1 + ( tan(04/2) )^2 ]
+
+Define:
+	A = k1 - k3
+	B = 2*k2
+	C = k1 + k3
+
+A*( tan(02/2) )^2 + B*( tan(02/2) )^2 + C = 0
+
+02 = 2*tan^(-1)[ -B +/- sqrt(B^2 - 4AC) / 2A ]
+	You can now calculate 02_1 and 02_2
+
+###########################################
+
+03_1 = sin^(-1)[ a*sin02-c / b ]
+03_2 = sin^(-1)[ -a*sin02-c / b ] + pi
+
+###########################################
+d calcs (each theta3 value has a d value)
+
+d = a*cos02 - b*cos03
+
+Crossed if L1 crosses L3
+If d is negative it is imaginary

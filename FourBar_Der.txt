@@ -1,0 +1,84 @@
+FourBar_Der
+
+Given: a, b, c , d, 01, 02
+Find: 03, 04
+
+Create vector loop
+Create scalar form -> a( cos() + i * sin() )
+Create real and imaginary equations (I and II)
+
+For Real apply 01 = 0
+For imaginary apply 01 = 0 & divide by i
+
+(I): b*cos(03) = -a*cos(02) + c*cos(04) + d
+(II): b*sin(03) = -a*sin(02) + c*sin(04)
+
+(I)^2 + (II)^2:
+b^2*[ (sin03)^2 + (cos03)^2 ] =
+	(-a*sin02 + c*sin04)^2 + (-a*cos02 + c*cos04 + d)^2
+
+Rule: 
+(a+b+c)^2 = a^2 + 2ab + 2ac + b^2 + 2bc + c^2
+
+b^2 = a^2 + c^2 + d^2 - 2adcos(02) + 2cdcos(04) 
+		- 2ac[sin(02)*sin(04) + cos(02)*cos(04)]
+
+Divide by 2ac:
+(d/a)*cos(04) - (d/c)*cos(02) 
+	+ [ a^2 - b^2 + c^2 + d^2 / (2ac) ] = sin02*sin04 + cos02*cos04
+
+Define: k1 = (d/a), k2 = (d/c), 
+	k3 = [ a^2 - b^2 + c^2 + d^2 / (2ac) ]
+
+k1*cos(04) - k2*cos(02) + k3 = sin02*sin04 + cos02*cos04
+
+Half Angle ID:
+
+sin04 = [ 2*tan(04/2) / 1 + ( tan(04/2) )^2 ]
+cos04 = [ 1 - ( tan(04/2) )^2 / 1 + ( tan(04/2) )^2 ]
+
+k1*cos(04) - k2*cos(02) + k3 = 
+	sin02 * [ 2*tan(04/2) / 1 + ( tan(04/2) )^2 ]
+	+ cos02 * [ 1 - ( tan(04/2) )^2 / 1 + ( tan(04/2) )^2 ]
+
+Multiply both sides with: 1 + ( tan(04/2) )^2
+
+Define:
+	A = cos02 - k1 - k2*cos02 + k3
+	B = -2sin02
+	C = k1 - (k2 + 1)*cos(02) + k3
+
+A*( tan(04/2) )^2 + B*tan(04/2) + c = 0
+
+Quadratic solution:
+tan(04/2) = -B +/- sqrt[ B^2 - 4*A*C / (2*A) ]
+	then multiply by 2 & tan^(-1) to get 04_1 and 04_2
+
+############################################
+Solving for theta 3
+
+Reordering I and II:
+
+I: c*cos04 = a*cos02 + b*cos(03) - d
+II: c*sin04 = a*sin02 + b*sin03
+
+(I)^2 + (II)^2:
+
+c^2 = (a*cos02 + b*cos03 - d)^2 + (a*sin02 + b*sin03)^2
+
+Define:
+k1 = d/a
+k4 = d/b
+k5 = [ c^2 - d^2 - a^2 - b^2 / (2ab) ]
+
+Applying half angle ID:
+D = cos02 - k1 + k4*cos02 + k5
+E = -2*sin02
+F = k1 + (k4 - 1)*cos02 + k5
+
+D * [tan(03/2)]^2 + E * [tan(03/2)] + F = 0(
+
+03 = 2*tan^(-1) [ -E +/- sqrt[ E^2 - 4DF / (2D) ] ]
+	You can now obtain 03_1 and 03_2
+	If 03 crosses 01 then its the crossed position
+

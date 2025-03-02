@@ -1,0 +1,31 @@
+
+Given: a,b,c, 01, 04
+Unknown: d, 02
+
+Creation of vector loop
+Creation of euler form
+Creation of real & imaginary
+
+Recall: 01 = 0 & 04 = 90
+Real: a*cos02 - b*cos03 - c*cos04 - d = 0
+Imaginary: a*cos02 - b*sin03 - c*sin04 = 0
+
+(II): a*sin02 - b*sin03 - c*sin04
+	Note: sin(04) -> 1
+	a*sin02 - c = b*sin03
+	(a*sin02 - c / b) = sin03
+	Note: Sin is a multivalued function
+	03 = sin^(-1)[ (a*sin02 - c / b) ]
+	&
+	03 = sin^(-1)[ -(a*sin02 - c / b) ] + pi
+
+After determining 03, you can find d
+
+(I): a*cos02 - b*cos03 - c*cos04 - d = 0
+	Note: cos04 -> 0
+	d = a*cos02 - b*cos03
+
+	Plug in theta 3 values to find d values
+	We do not want negative d values
+
+

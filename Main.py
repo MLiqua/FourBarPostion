@@ -14,6 +14,7 @@ print("""
 	Case 1 (Four Bar): Theta 3 and Theta 4 unknown
 	Case 2 (Crank Slider): d and Theta 3 unknown
 	Case 3 (Slider Crank): Theta 2 and Theta 3 unknown
+	Case 4 Want to ID Grashof Four Bar Mech
 """)
 print("Type numeric part of case that you want: ") 
 UserInput = input()
@@ -30,6 +31,10 @@ match UserInput:
 				exec(code)
 	case "3":
 			with open("SliderCrank.py") as file:
+				code = file.read()
+				exec(code)
+	case "4":
+		with open("GrashofFour.py") as file:
 				code = file.read()
 				exec(code)
 	case _:
