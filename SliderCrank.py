@@ -2,82 +2,85 @@
 '''
 # Author: Matthew Ryan Liqua
 # Date Created: 2/19/25
-# Date Last Edited: 2/22/25
+# Date Last Edited: 3/2/25
 # Course: ENGR Mechanism Design
 # Purpose: Calcualte Positional, Velocity, And Accleration
 		   For Slider Crank Mechanism
 '''
 ##########################################################
-
-# Derivation was done on another page
-# The goal here is to solve for theta 2 and theta 3
+# Derivation done on SliderCrank_Der
 
 from math import sin, cos, tan, acos, asin, atan, pi, degrees, radians
 from cmath import sqrt
 
-L1 = int(input("Input L1 (mm): "))
-L2 = int(input("Input L2 (mm): "))
-L3 = int(input("Input L3 (mm): "))
-L4 = int(input("Input L4 (mm): "))  
-
-theta1 = radians(int(input("Input theta 1 (degree): ")))
-# theta2 = radians(int(input("Input theta 2 (degree): ")))
-# theta3 = radians(int(input("Input theta 3 (degree): ")))
-theta4 = radians(int(input("Input theta 4 (degree): "))) 
+print("\n")
+print("This calculation assumes ground is d [R1] & Theta4 = 90")
+print("Ensure that all units for length are the same.")
+a = float(input("Input a [R2] length: "))
+b = float(input("Input b [R3] length: "))
+c = float(input("Input c [R4] length: "))
+d = float(input("Input d [R1] length: "))  
 print("\n")
 
-K1 = (L1 ** 2) - (L2 ** 2) + (L3 ** 2) + (L4 ** 2)
-K2 = -2 * L1 * L3
-K3 = -2 * L1 * L4
-#print("These are the values K1, K2, and K3:", K1, K2, K3)
+K1 = (a ** 2) - (b ** 2) + (c ** 2) + (d ** 2)
+K2 = -2*a*c
+K3 = -2*a*d
+# print("These are the values K1, K2, and K3:", K1, K2, K3)
 
 A = K1 - K3
 B = 2*K2
 C = K1 + K3
-#print("These are the values A,B,C: ", A, B, C)
+# print("These are the values A,B,C: ", A, B, C)
 
 ##########################################################
 # First Angle Solving
-TempVal_1 = -B + sqrt( (B ** 2) - 4 * A * C )
-TempVal_1 = TempVal_1.real
-TempVal_2 = TempVal_1 / (2*A)
+# B/C Theta 2 is not defined, it can be anywhere in space, hence you see branching behvaior (Theta3)
 
-Theta2_1 = round(degrees(2*atan(TempVal_2)),2)
-print("First theta 2 value: ", Theta2_1)
-
-TempVal_1 = radians(Theta2_1)
-TempVal_2 = (L1 * sin(TempVal_1) - L3) / L2
-TempVal_3 = round(degrees(asin(TempVal_2)), 2)
-print("First Theta 3 value from First Theta 2: ", TempVal_3)
-
-# Asin is a multi-value function, thus add pi
-TempVal_1 = radians(Theta2_1)
-TempVal_2 = -(L1 * sin(TempVal_1) - L3) / L2
-TempVal_3 = round(degrees( asin(TempVal_2) + pi), 2)
-print("Second Theta 3 value from First Theta 2: ", TempVal_3)
+TopPartQuad = - B + sqrt( (B**2) -4*A*C)
+TopPartQuad = TopPartQuad.real
+InsideATan = TopPartQuad / (2*A)
+RadATanVal = atan(InsideATan)
+RadATanVal = 2*RadATanVal
+RadTheta2_1 = RadATanVal # Value stored for vector applicaiton later
+Theta2_1 = round(degrees(RadTheta2_1), 2)
+print("NOTE: First '_' = Theta2 value used for calculation.")
+print("NOTE: Second '_' = Theta3 value calculated.")
 print("\n")
+print("Theta 2_1 Value:", Theta2_1)
 
+TopFraction =  (a*sin(RadTheta2_1) - c) / b
+RadTheta3_1_1 = asin(TopFraction)
+Theta3_1_1 = round(degrees(RadTheta3_1_1), 2)
+print("Theta 3_1_1 value from Theta2_1: ", Theta3_1_1)
 
-# Further expansion to include velocity and accleration
+# Asin is a multi-value function, thus add pi (radian value)
+TopFraction =  -(a*sin(RadTheta2_1) - c) / b
+RadTheta3_1_2 = asin(TopFraction) + pi
+Theta3_1_2 = round(degrees(RadTheta3_1_2), 2)
+print("Theta 3_1_2 value from Theta2_1: ", Theta3_1_2)
+print("\n")
 
 ##########################################################
 # Second Angle Solving
-TempVal_1 = -B - sqrt( (B ** 2) - 4 * A * C )
-TempVal_1 = TempVal_1.real
-TempVal_2 = TempVal_1 / (2*A)
+TopPartQuad = - B - sqrt( (B**2) -4*A*C)
+TopPartQuad = TopPartQuad.real
+InsideATan = TopPartQuad / (2*A)
+RadATanVal = atan(InsideATan)
+RadATanVal = 2*RadATanVal
+RadTheta2_2 = RadATanVal # Value stored for vector applicaiton later
+Theta2_2 = round(degrees(RadTheta2_2), 2)
+print("Theta 2_2 Value: ", Theta2_2)
 
-Theta2_2 = round(degrees(2*atan(TempVal_2)),2)
-print("Second theta2 value: ", Theta2_2)
+TopFraction =  (a*sin(RadTheta2_2) - c) / b
+RadTheta3_2_1 = asin(TopFraction)
+Theta3_2_1 = round(degrees(RadTheta3_2_1), 2)
+print("Theta 3_2_1 value from Theta2_2: ", Theta3_2_1)
 
-TempVal_1 = radians(Theta2_2)
-TempVal_2 = (L1 * sin(TempVal_1) - L3) / L2
-TempVal_3 = round(degrees(asin(TempVal_2)), 2)
-print("First Theta 3 value from Second Theta 2: ", TempVal_3)
+TopFraction =  -(a*sin(RadTheta2_2) - c) / b
+RadTheta3_2_2 = asin(TopFraction) + pi
+Theta3_2_2 = round(degrees(RadTheta3_2_2), 2)
+print("Theta 3_2_2 value from Theta2_2: ", Theta3_2_2)
+print("\n")
 
-TempVal_1 = radians(Theta2_2)
-TempVal_2 = -(L1 * sin(TempVal_1) - L3) / L2
-TempVal_3 = round(degrees( asin(TempVal_2) + pi), 2)
-print("Second Theta 3 value from Second Theta 2: ", TempVal_3)
-
-
+# Further expand graphical capabilities to show real and non-real circuits
 # Further expansion to include velocity and accleration
