@@ -1,7 +1,10 @@
 # FourBarPostion
 
-When you want want to run the program, run main.py.
-Main.py will allow you make selection based on what is missing.
+This program calcualtes the postion and graphs four bar mechanisms (fourbar, crank-slider, and slider-crank).
+Additonally, it can calcualte grashof conditions and classificaitons
 
-Future expansion:
-postional graphic ability
+To run this program, download all files into the same location and run main.py and make desired selection
+
+
+
+Futurue expansion: Velocity, Accleration, and Force
